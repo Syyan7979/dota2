@@ -1,23 +1,17 @@
 import { Injectable } from '@angular/core';
-import { Heroes } from 'src/app/data/mock-heroes';
 import { Hero } from 'src/app/interfaces/hero';
 import { Observable, of } from 'rxjs';
 import { MessageService } from '../message/message.service';
+import {HttpClient, HttpHeaders} from "@angular/common/http";
 
 @Injectable({
   providedIn: 'root'
 })
 export class HeroService {
-  constructor(private messageService : MessageService) { }
+  private heroesUrl = 'https://api.opendota.com/api/heroStats';
+  constructor(private http : HttpClient, private messageService : MessageService) { }
 
   getHeroes() : Observable<Hero[]> {
-    const heroes = of(Heroes);
-    this.messageService.add("HeroService: fetched heroes");
-    return heroes;
-  }
-
-  getHero(id : number) : Observable<Hero> {
-    const hero = Heroes.find(hero => hero.id === id)!;
-    return of(hero);
+    return this.http.get<Hero[]>(this.heroesUrl);
   }
 }

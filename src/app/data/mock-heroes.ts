@@ -1,4 +1,4 @@
-import { Hero } from '../interfaces/hero';
+/*import { Hero } from '../interfaces/hero';
 
 export const Heroes : Hero[] = [
     { id: 12, name: 'Dr. Nice' },
@@ -10,4 +10,4 @@ export const Heroes : Hero[] = [
     { id: 18, name: 'Dr. IQ' },
     { id: 19, name: 'Magma' },
     { id: 20, name: 'Tornado' }
-];
+];*/

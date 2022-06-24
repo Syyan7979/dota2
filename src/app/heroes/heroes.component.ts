@@ -8,6 +8,7 @@ import { MessageService } from '../services/message/message.service';
   templateUrl: './heroes.component.html',
   styleUrls: ['./heroes.component.css']
 })
+
 export class HeroesComponent implements OnInit {
 
   heroes : Hero[] = [];
@@ -20,5 +21,4 @@ export class HeroesComponent implements OnInit {
   getHeroes() {
     this.heroService.getHeroes().subscribe((heroes) => this.heroes = heroes)
   }
-
 }

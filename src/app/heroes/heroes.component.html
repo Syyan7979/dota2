@@ -1,11 +1,37 @@
-
-<div>
-    <ul class="heroes">
-        <li *ngFor="let hero of heroes">
-            <a routerLink="/heroes/{{hero.id}}/details">
-                <span class="badge">{{hero.id}} </span>
-                {{hero.name}}
-            </a>
-        </li>
-    </ul>
-</div>
+<section clas="hero-gallery" style="background-attachment: fixed; background-image: url('https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/backgrounds/greyfade.jpg'); background-repeat: no-repeat; background-size: cover; padding: 50px 0; min-height: 100vh;">
+    <div class="container d-flex flex-column flex-wrap">
+        <div class="row justify-content-md-center">
+            <div class="col-lg-auto text-center">
+                <h1>Choose your hero</h1>
+            </div>
+            <div class="col-lg-auto text-center">
+                <h4>From magical tacticians to fierce brutes and cunning rogues, Dota 2's hero pool is massive and limitlessly diverse. Unleash incredible abilities and devastating ultimates on your way to victory.</h4>
+            </div>
+        </div>
+        <div class="row gy-2 mt-5 align-items-center" id="nav">
+            <div class="col-auto">
+                <h6>FILTER HEROES</h6>
+            </div>
+            <div class="col-auto">
+                <ul>
+                    <li>
+                        <input type="image" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/herogrid/filter-str-active.png"/>
+                    </li>
+                    <li>
+                        <input type="image" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/herogrid/filter-agi-active.png"/>
+                    </li>
+                    <li>
+                        <input type="image" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/herogrid/filter-int-active.png"/>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="row gy-3 justify-content-center">
+            <div class="col-auto px-2" *ngFor="let hero of heroes">
+                <a routerLink="/heroes/{{hero.id}}/details">
+                    <img class="hero-images"src="https://api.opendota.com{{hero.img}}">
+                </a>
+            </div>
+        </div>
+    </div>
+</section>

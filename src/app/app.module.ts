@@ -8,7 +8,10 @@ import { HeroesDetailsComponent } from './heroes-details/heroes-details.componen
 import { MessagesComponent } from './messages/messages.component';
 import { AppRoutingModule } from './modules/app-routing.module';
 import { DashboardComponent } from './dashboard/dashboard.component';
-
+import { HttpClientModule } from '@angular/common/http';
+import { HeaderComponent } from './header/header.component';
+import { FooterComponent } from './footer/footer.component';
+import { HomeComponent } from './home/home.component';
 
 
 @NgModule({
@@ -17,12 +20,16 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     HeroesComponent,
     HeroesDetailsComponent,
     MessagesComponent,
-    DashboardComponent
+    DashboardComponent,
+    HeaderComponent,
+    FooterComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

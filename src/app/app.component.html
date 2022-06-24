@@ -1,10 +1,8 @@
-<nav>
-    <a routerLink="/">
-        <h1>{{ title | uppercase }}</h1>
-    </a>
-</nav>
-<nav>
-    <a routerLink="/heroes">Heroes</a>
-</nav>
-<router-outlet></router-outlet> 
-<app-messages></app-messages>
+<!--Header-->
+<app-header></app-header>
+
+<!--The different routes-->
+<router-outlet></router-outlet>
+
+<!--footer-->
+<app-footer></app-footer>
