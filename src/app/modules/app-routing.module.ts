@@ -6,11 +6,11 @@ import { DashboardComponent } from '../dashboard/dashboard.component';
 import { HeroesDetailsComponent } from '../heroes-details/heroes-details.component';
 
 const routes : Routes = [
+  { path: '',   redirectTo: '/home', pathMatch: 'full' },
   { path : 'heroes', component : HeroesComponent},
   { path : 'home', component : HomeComponent},
   { path : 'heroes/:heroId/details', component : HeroesDetailsComponent}
 ]
-
 
 @NgModule({
   declarations: [],
