@@ -1,6 +1,6 @@
 <div class="video-background">
     <div class="video-wrap">
-        <video autoplay muted loop playsinline>
+        <video autoplay muted loop playsinline oncanplay="this.play()" onloadedmetadata="this.muted = true">
         <source type="video/webm" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/videos/dota_react/homepage/dota_montage_webm.webm">
         <source type="video/mp4" src="https://cdn.cloudflare.steamstatic.com/apps/dota2/videos/dota_react/homepage/dota_montage_02.mp4">
     </video>

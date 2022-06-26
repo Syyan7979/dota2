@@ -26,4 +26,9 @@ export class HeroesDetailsComponent implements OnInit {
     const id = Number(this.route.snapshot.paramMap.get('heroId'));
     this.heroService.getHeroes().subscribe(heroes => this.hero = heroes.find(hero => hero.id === id));
   }
+
+  getLastRole() : string | undefined {
+    const role = this.hero? this.hero["roles"].slice(-1)[0] : undefined
+    return role;
+  }
 }

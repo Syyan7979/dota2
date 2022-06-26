@@ -8,7 +8,6 @@ import { HeroesDetailsComponent } from '../heroes-details/heroes-details.compone
 const routes : Routes = [
   { path : 'heroes', component : HeroesComponent},
   { path : '',   redirectTo: '/home', pathMatch: 'full' },
-  { path : '/dota2/',   redirectTo: '/home', pathMatch: 'full' },
   { path : 'home', component : HomeComponent},
   { path : 'heroes/:heroId/details', component : HeroesDetailsComponent}
 ]
