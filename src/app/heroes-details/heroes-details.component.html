@@ -1,33 +1,25 @@
-<!--<div *ngIf="hero">
-    <h2>{{hero.localized_name | uppercase}} Details</h2>
-    <div>id: {{hero.id}}</div>
-    <div>
-      <label for="hero-name">Hero name: </label>
-      <input id="hero-name" [(ngModel)]="hero.localized_name" placeholder="name">
-    </div>
-</div> -->
 
 <section clas="hero-details" style="background-attachment: fixed; background-image: url('https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/backgrounds/greyfade.jpg'); background-repeat: no-repeat; background-size: cover; padding: 0 0 50px 0; min-height: 100vh;">
   <div class="container">
     <div *ngIf="hero">
       <!--div class="row bg-image" style="background-image: url(https://api.opendota.com{{hero.img}}); height: 50vh;"></div-->
-      <div class="row px-16 py-16 align-items-center justify-content-center">
-        <div class="col-auto bg-blur-children d-flex justify-content-center">
+      <div class="row py-5 align-items-center justify-content-center background-image" style="background-image: url(https://api.opendota.com{{hero.img}});">
+        <div class="col-sm-auto bg-blur-children d-flex justify-content-center">
           <div class="img-fluid profile-image">
             <img src="https://api.opendota.com{{hero.img}}">
           </div>
         </div>
-        <div class="col-auto bg-blur-children">
+        <div class="col-md-4 bg-blur-children">
           <div class="row">
             <div class="col d-flex justify-content-center">
-              <h3>{{hero.localized_name}}</h3>
+              <h3 style="color: whitesmoke; font-weight: bold; font-family: 'Trajan-Pro';">{{hero.localized_name}}</h3>
             </div>
           </div>
           <div class="row">
             <div class="col d-flex justify-content-center">
               <ul class="role-ul m-0 p-0">
-                <li><h6>{{hero.attack_type | uppercase}}&nbsp;-&nbsp;</h6></li>
-                <li *ngFor="let role of hero.roles">
+                <li><h6 style="color: whitesmoke; font-weight: bold; font-family: 'Trajan-Pro';">{{hero.attack_type | uppercase}}&nbsp;-&nbsp;</h6></li>
+                <li *ngFor="let role of hero.roles" style="color: whitesmoke; font-family: 'Trajan-Pro';">
                   <div *ngIf="role === getLastRole()">
                     {{role}}
                   </div>
@@ -40,19 +32,19 @@
             
           </div>
         </div>
-        <div class="col-auto">
+        <div class="col-4">
           <div class="row base-atris">
-            <div class="col-lg-auto align-self-center d-flex justify-content-center" id="str">
+            <div class="col-lg-4 align-self-center d-flex justify-content-center" id="str">
               <ul>
                 <li> {{hero.base_str}} + {{hero.str_gain}} </li>
               </ul>
             </div>
-            <div class="col-lg-auto d-flex justify-content-center" id="agi">
+            <div class="col-lg-4 d-flex justify-content-center" id="agi">
               <ul>
                 <li> {{hero.base_agi}} + {{hero.agi_gain}} </li>
               </ul>
             </div>
-            <div class="col-lg-auto d-flex justify-content-center" id="int">
+            <div class="col-lg-4 d-flex justify-content-center" id="int">
               <ul>
                 <li> {{hero.base_int}} + {{hero.int_gain}} </li>
               </ul>
@@ -61,8 +53,203 @@
           </div>
         </div>
       </div>
-      <div class="row"></div>
-      <div class="row"></div>
+      <div class="row">
+        <div class="col d-flex justify-content-center">
+          <button type="button" class="details-button m-3" (click)="clickButton()">
+            <div *ngIf="hide == true">
+              <h6>Show Details!</h6>
+            </div>
+            <div *ngIf="hide == false">
+              <h6>Hide Details!</h6>
+            </div>
+          </button>
+        </div>
+      </div>
+      <div *ngIf="hide == false">
+        <div class="row attributes justify-content-center">
+          <div class="col-md-3 col-sm-6 p-2">
+            <div *ngIf="hero.primary_attr == 'str'">
+              <div class="row light-row">
+                <div class="col-6 p-0">BASE ATTACK:</div> 
+                <div class="col-6 p-0 d-flex justify-content-end">{{hero.base_attack_min + hero.base_str}}-{{hero.base_attack_max + hero.base_str}}</div>
+              </div>
+            </div>
+            <div *ngIf="hero.primary_attr == 'agi'">
+              <div class="row light-row">
+                <div class="col-6 p-0">BASE ATTACK: </div> 
+                <div class="col-6 p-0 d-flex justify-content-end">{{hero.base_attack_min + hero.base_agi}}-{{hero.base_attack_max + hero.base_agi}}</div>
+              </div>
+            </div>
+            <div *ngIf="hero.primary_attr == 'int'">
+              <div class="row light-row">
+                <div class="col-6 p-0">BASE ATTACK: </div> 
+                <div class="col-6 p-0 d-flex justify-content-end">{{hero.base_attack_min + hero.base_int}}-{{hero.base_attack_max + hero.base_int}}</div>
+              </div>
+            </div>
+            <div class="row dark-row">
+              <div class="col-6 p-0">ATTACK RANGE: </div> 
+              <div class="col-6 p-0 d-flex justify-content-end">{{hero.attack_range | number}}</div>
+            </div>
+            <div class="row light-row">
+              <div class="col-6 p-0">ATTACK SPEED: </div> 
+              <div class="col-6 p-0 d-flex justify-content-end">{{(100+hero.base_agi)/(100*hero.attack_rate) * 100 * hero.attack_rate | number}}</div>
+            </div>
+            <div class="row dark-row">
+              <div class="col-6 p-0">PROJECTILE SPEED: </div> 
+              <div class="col-6 p-0 d-flex justify-content-end">{{hero.projectile_speed | number}}</div>
+            </div>
+          </div>
+          <div class="col-md-3 col-sm-6 p-2">
+            <div class="row light-row">
+              <div class="col-6 p-0">HEALTH:</div> 
+              <div class="col-6 p-0 d-flex justify-content-end">{{hero.base_health + hero.base_str * 20 | number}}</div>
+            </div>
+            <div class="row dark-row">
+              <div class="col-6 p-0">HEALTH REGEN:</div>
+              <div class="col-6 p-0 d-flex justify-content-end">{{hero.base_health_regen + hero.base_str * 0.1 | number}}</div>
+            </div>
+            <div class="row light-row">
+              <div class="col-6 p-0">MANA:</div>
+              <div class="col-6 p-0 d-flex justify-content-end">{{hero.base_mana + hero.base_int * 12 | number}}</div>
+            </div>
+            <div class="row dark-row">
+              <div class="col-6 p-0">MANA REGEN:</div>
+              <div class="col-6 p-0 d-flex justify-content-end">{{hero.base_mana_regen + hero.base_int * 0.05 | number}}</div>
+            </div>
+          </div>
+          <div class="col-md-3 col-sm-6 p-2">
+            <div class="row light-row">
+              <div class="col-6 p-0">BASE ARMOR:</div>
+              <div class="col-6 p-0 d-flex justify-content-end">{{(0.165 * hero.base_agi) | number}}({{(0.165 * hero.base_agi)/hero.base_agi | percent}})</div>             
+            </div>
+            <div class="row dark-row">
+              <div class="col-6 p-0">MAGIC RESISTANCE:</div>
+              <div class="col-6 p-0 d-flex justify-content-end">{{hero.base_mr}}</div>             
+            </div>
+            <div class="row light-row">
+              <div class="col-6 p-0">MOVE SPEED:</div>
+              <div class="col-6 p-0 d-flex justify-content-end">{{hero.move_speed}}</div>             
+            </div>
+            <div class="row dark-row">
+              <div class="col-6 p-0">TURN SPEED:</div>
+              <div class="col-6 p-0 d-flex justify-content-end">{{hero.turn_rate }}</div>             
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-3 col-sm-6 p-2">
+            <div class="row light-row">
+              <div class="col-6 p-0">NUMBER OF LEGS:</div>
+              <div class="col-6 p-0 d-flex justify-content-end">{{ hero.legs}}</div>
+            </div>
+            <div class="row dark-row">
+              <div class="col-6 p-0">CM ENABLED:</div>
+              <div class="col-6 p-0 d-flex justify-content-end">{{hero.cm_enabled}}</div>             
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row py-2 justify-content-center">
+        <div class="col-auto p-0">
+            <button type="button" [ngClass]='matchupCheck' (click)="clickMatchups()">MATCHUPS</button>
+        </div>
+        <div class="col-auto p-0">
+          <button type="button" [ngClass]='playerCheck' (click)="clickPlayers()">PLAYERS</button>
+        </div>
+      </div>
+
+      <div *ngIf="matchupCheck == 'not-selected' && playerCheck == 'selected';">
+        <div class="row mt-5 justify-content-center matchups px-5">
+          <div class="row p-3 bg-black border border-light">
+            <div class="col-6">
+              ACCOUNT ID
+            </div>
+            <div class="col-3">
+              GAMES
+            </div>
+            <div class="col-3">
+              WIN
+            </div>
+          </div>
+          <div *ngFor="let player of players">
+            <div class="row p-3 border border-light">
+              <div class="col-6 p-0">
+                <div class="row">
+                  <div class="col-auto align-self-center">{{player.account_id}}</div>
+                </div>
+              </div>
+              <div class="col-3 px-3">
+                <div class="row">
+                  {{player.games_played}}
+                </div>
+                <div class="row">
+                  <div class="outer" style="background-color: #727272; height: 15px; width: 100%; padding: 0;">
+                    <div class="inner" style="background-color: #66bb6a; height: 15px;" [ngStyle]="{'width' : calculatePercentPlayer(player.games_played)}"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-3 px-3">
+                <div class="row">
+                  {{player.wins/player.games_played | percent}}
+                </div>
+                <div class="row">
+                  <div class="outer" style="background-color: #727272; height: 15px; width: 100%; padding: 0;">
+                    <div class="inner" style="background-color: #66bb6a; height: 15px;"[ngStyle]="{'width' : winRate(player.wins, player.games_played)}"> </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div *ngIf="matchupCheck == 'selected' && playerCheck == 'not-selected';">
+        <div class="row mt-5 justify-content-center matchups px-5">
+          <div class="row p-3 bg-black border border-light">
+            <div class="col-6">
+              HERO
+            </div>
+            <div class="col-3">
+              GAMES
+            </div>
+            <div class="col-3">
+              WIN
+            </div>
+          </div>
+          <div *ngFor="let matchup of matchUps">
+            <div class="row p-3 border border-light">
+              <div class="col-6 p-0">
+                <div class="row">
+                  <div class="col-auto p-0">
+                    <img class="img-fluid match-hero-img" src="https://api.opendota.com{{getHeroName(matchup.hero_id)[1]}}">
+                  </div>
+                  <div class="col-auto align-self-center">{{getHeroName(matchup.hero_id)[0]}}</div>
+                </div>
+              </div>
+              <div class="col-3 px-3">
+                <div class="row">
+                  {{matchup.games_played}}
+                </div>
+                <div class="row">
+                  <div class="outer" style="background-color: #727272; height: 15px; width: 100%; padding: 0;">
+                    <div class="inner" style="background-color: #66bb6a; height: 15px;" [ngStyle]="{'width' : calculatePercent(matchup.games_played)}"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-3 px-3">
+                <div class="row">
+                  {{matchup.wins/matchup.games_played | percent}}
+                </div>
+                <div class="row">
+                  <div class="outer" style="background-color: #727272; height: 15px; width: 100%; padding: 0;">
+                    <div class="inner" style="background-color: #66bb6a; height: 15px;"[ngStyle]="{'width' : winRate(matchup.wins, matchup.games_played)}"> </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      
     </div>
   </div>
 </section>

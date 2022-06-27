@@ -2,6 +2,7 @@
 .hero-images{
   background-color: rgba(0, 0, 0, 0.7);
   width: 225px;
+  height: auto;
   padding-right: 3px;
   padding-bottom: 3px;
   box-shadow: 0 0 25px rgba(0, 0, 0, 0.7);
@@ -12,7 +13,7 @@ h1{
   font-family: 'Trajan-Pro';
   font-weight: bold;
   text-transform: uppercase;
-  font-size: 3.75em;
+  font-size: 6vw;
   margin: 0;
 }
 
@@ -21,6 +22,7 @@ h4{
   font-family: 'Trajan-Pro';
   font-weight: normal;
   padding: 0 80px;
+  font-size: 2vw;
 }
 
 h6{

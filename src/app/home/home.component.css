@@ -18,3 +18,17 @@
     left: 50%;
     transform: translate(-50%, -50%);
 }
+
+.home-text {
+    position: relative;
+    margin-top: 175px;
+}
+
+.home-text h1 {
+    color: white;
+    font-family: 'Trajan Pro';
+    font-weight: bolder;
+    font-size: 6.5vw;
+    padding: 0 50px;
+    display: inline-block;
+}

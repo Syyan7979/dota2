@@ -1,1 +1,1 @@
-ng build --output-path docs --base-href dota2
+ng build --output-path docs --base-href ''
